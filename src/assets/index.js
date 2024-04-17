@@ -35,8 +35,14 @@ import tcs from './company/tcsLogo.png'
 import netflixClone from './projects/netflix.png'
 import vuejsOlive from './projects/vuejsOlive.png'
 import nodeMicro from './projects/nodejsMicroservices.png'
+import zoomClone from './projects/zoomClone.png'
+import angularBuySell from './projects/angularBuySell.png'
+import reactBlog from './projects/reactBlog.png'
 
 export {
+  reactBlog,
+  angularBuySell,
+  zoomClone,
   nodeMicro,
   vuejsOlive,
   netflixClone,
