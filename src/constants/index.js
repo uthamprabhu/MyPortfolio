@@ -123,17 +123,20 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Programmer",
+    title: "Developer",
     company_name: "Tata Consultancy Services (TCS)",
     icon: tcs,
     iconBg: "#383E56",
-    date: "July 2022 - till date",
+    date: "July 2022 - September 2025",
     points: [
-      "Collaborated in a team environment to enhance the frontend code, resulting in a 40% increase in user interaction and improved user experience.",
-      "Utilized the MERN stack to create clear, well-documented code for user registration and authentication, contributing significantly to the application's functionality.",
-      "Successfully implemented new features that resulted in a 60% reduction in customer support requests, demonstrating an ability to deliver high-impact solutions that enhance user experience.",
-      "Collaborated in a team to design and test REST APIs using NodeJS, resulting in a 30% improvement in response times and reduced API latency.",
-      "Led a team of 5 in the design and development of an internal microservice application, serving a user base of more than 600,000, showcasing strong leadership and technical skills."
+      "Developed responsive frontend modules, including data-intensive tables using React.js, for a defense application with DRDO for the Indian Army and Navy, reducing development time by 50%. Enhanced user experience by 40% and improved data accuracy by 50% through seamless backend integration.",
+      "Developed a new product discovery module in React.js with infinite scroll and advanced filters, replacing the legacy search system and improving performance and user experience by 45% as reported by project metrics.",
+      "Led the development of a cart module using React.js, integrating backend APIs for real-time inventory and budget tracking, driving a 30% improvement in resource management and delivering a seamless user experience with efficient data updates. ",
+      "Improved global performance consistency by 40% by building a JSON-driven configuration service that integrated smoothly with existing React codebases, enabling effective localization in 7 new countries.",
+      "Collaborated in a 3-member team to redesign and develop role-based login/signup flows from Figma to production using React and form validation; the new experience led to an 80% increase in user logins, significantly improving onboarding and engagement. ",
+      "Took the lead in building a real-time chat component using React, Node.js (Express), and Socket.io for one-on-one, group, and room-based messaging; proactively initiated the feature to support the larger app vision, easing the workload of senior developers and accelerating final integration by 30%.",
+      "Worked with a 10-member team to build a scalable microservice-based app for 600,000+ users, leading the development of login/signup flows using Node.js, Express, JWT, and advanced error handling. Improved auth reliability and helped reduce login-related support tickets by 40%, while ensuring smooth access during peak traffic hours.",
+      "Led a team of 5 in creating a 3D Virtual Reality (VR) Biology Lab optimized for Facebook’s (Meta) Oculus, delivering 50% ahead of schedule. Ensured seamless knowledge transfer for 3D model design and functionality."
     ],
   }
 ];

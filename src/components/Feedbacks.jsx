@@ -55,7 +55,7 @@ const Feedbacks = () => {
         <div className='flex justify-center items-center h-full'>
           <a
             variants={styles.fadeIn}
-            href='https://drive.google.com/file/d/1uPw3XJETWKpgObMOgKBH-rdWR7AMpYiR/view?usp=drive_link'
+            href='https://drive.google.com/file/d/1FsDlU30b2zB7JOOtIo6V6Urzm6HgK88z/view?usp=sharing'
             target='_blank'
             rel='noopener noreferrer'
             className='bg-tertiary text-white font-bold text-lg rounded-full w-32 h-12 flex items-center justify-center'
