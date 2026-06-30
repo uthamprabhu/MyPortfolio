@@ -158,7 +158,7 @@ const Resume = () => {
             </div>
 
             <p className='text-secondary text-[11px] text-center leading-relaxed'>
-              Immediate joiner · Open to Remote &amp; Bengaluru
+              Based in Kochi · Immediate joiner · Open to Remote / Hybrid — Kochi &amp; Bengaluru (Bangalore)
             </p>
           </div>
         </div>
