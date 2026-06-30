@@ -19,6 +19,27 @@
   display: block;
 }
 
+/* Floating animation for the flat tech balls on mobile/tablet */
+@keyframes techFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.tech-ball {
+  animation: techFloat 3s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tech-ball {
+    animation: none;
+  }
+}
+
 .black-gradient {
   background: #000000; /* fallback for old browsers */
   background: -webkit-linear-gradient(
