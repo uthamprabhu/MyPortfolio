@@ -24,6 +24,8 @@ import {
   tripguide,
   threejs,
   tcs,
+  warpdrive,
+  freelance,
   netflixClone,
   vuejsOlive,
   nodeMicro,
@@ -42,6 +44,10 @@ export const navLinks = [
     title: "Work",
   },
   {
+    id: "resume",
+    title: "Resume",
+  },
+  {
     id: "contact",
     title: "Contact",
   },
@@ -53,11 +59,11 @@ const services = [
     icon: web,
   },
   {
-    title: "React developer",
+    title: "React Developer",
     icon: mobile,
   },
   {
-    title: "DevOps Engineer",
+    title: "Backend Engineer",
     icon: backend,
   },
   {
@@ -123,22 +129,50 @@ const technologies = [
 
 const experiences = [
   {
-    title: "Developer",
+    title: "Freelance Full Stack Developer",
+    company_name: "Self-Employed",
+    icon: freelance,
+    iconBg: "#0a1628",
+    date: "January 2026 – Present",
+    points: [
+      "Built and launched focuzonemedia.com — a full-stack event-based media website — using Next.js, Node.js backend, deployed on Vercel with AWS S3 for media asset storage.",
+      "Currently developing CineArtery, a scalable web application for actors and producers to discover, connect, and collaborate — built with Next.js, Node.js, Django REST Framework, and PostgreSQL.",
+      "Architecting multi-service backend systems, managing database schema design, and handling end-to-end deployment across both projects independently.",
+      "Managing the full product lifecycle solo: client requirements, UI/UX design, development, deployment, and ongoing maintenance.",
+    ],
+  },
+  {
+    title: "Technical Specialist",
+    company_name: "WarpDrive Tech Works — Scotty (B2B SaaS)",
+    icon: warpdrive,
+    iconBg: "#0f0f1a",
+    date: "October 2025 – January 2026",
+    points: [
+      "Developed multiple responsive UI modules using Next.js and Tailwind CSS, translating complex Figma designs into production-ready interfaces across multiple user flows.",
+      "Built the UI for a real-time chat system handling message updates, typing indicators, and channel switching — ensuring a smooth and consistent user experience at scale.",
+      "Implemented role-based access control (RBAC) across the application, enforcing route guards and permission-based UI rendering, eliminating unauthorized deep-link navigation issues.",
+      "Developed a face recognition login flow using FaceAPI.js, covering onboarding, biometric setup, and account management for a seamless and secure authentication experience.",
+      "Built geofencing and geotagging UI systems using Google Maps APIs, enabling real-time field tracking and location-based validation workflows.",
+      "Optimized UI for responsiveness and PWA support, ensuring consistent performance, faster load times, and reliable behavior across devices and network conditions.",
+    ],
+  },
+  {
+    title: "Assistant System Engineer",
     company_name: "Tata Consultancy Services (TCS)",
     icon: tcs,
     iconBg: "#383E56",
-    date: "July 2022 - September 2025",
+    date: "July 2022 – September 2025",
     points: [
-      "Developed responsive frontend modules, including data-intensive tables using React.js, for a defense application with DRDO for the Indian Army and Navy, reducing development time by 50%. Enhanced user experience by 40% and improved data accuracy by 50% through seamless backend integration.",
-      "Developed a new product discovery module in React.js with infinite scroll and advanced filters, replacing the legacy search system and improving performance and user experience by 45% as reported by project metrics.",
-      "Led the development of a cart module using React.js, integrating backend APIs for real-time inventory and budget tracking, driving a 30% improvement in resource management and delivering a seamless user experience with efficient data updates. ",
-      "Improved global performance consistency by 40% by building a JSON-driven configuration service that integrated smoothly with existing React codebases, enabling effective localization in 7 new countries.",
-      "Collaborated in a 3-member team to redesign and develop role-based login/signup flows from Figma to production using React and form validation; the new experience led to an 80% increase in user logins, significantly improving onboarding and engagement. ",
-      "Took the lead in building a real-time chat component using React, Node.js (Express), and Socket.io for one-on-one, group, and room-based messaging; proactively initiated the feature to support the larger app vision, easing the workload of senior developers and accelerating final integration by 30%.",
-      "Worked with a 10-member team to build a scalable microservice-based app for 600,000+ users, leading the development of login/signup flows using Node.js, Express, JWT, and advanced error handling. Improved auth reliability and helped reduce login-related support tickets by 40%, while ensuring smooth access during peak traffic hours.",
-      "Led a team of 5 in creating a 3D Virtual Reality (VR) Biology Lab optimized for Facebook’s (Meta) Oculus, delivering 50% ahead of schedule. Ensured seamless knowledge transfer for 3D model design and functionality."
+      "Developed responsive frontend modules using React.js for a defense application (DRDO), building data-intensive tables and workflows with seamless API integration — reducing development time by 50% and improving data accuracy by 50%.",
+      "Built a product discovery module with infinite scroll and advanced filtering, replacing the legacy search system and improving performance and usability by 45%.",
+      "Led the development of a cart and tracking module using React.js, integrating backend APIs for real-time inventory updates and budget-based workflows — driving a 30% improvement in resource management.",
+      "Implemented role-based authentication flows (login/signup) from Figma to production using React and form validation — resulting in an 80% increase in user logins and significantly improved onboarding.",
+      "Built a real-time chat feature using React, Node.js, and Socket.io, supporting one-to-one and group communication with consistent message synchronization.",
+      "Contributed to a microservice-based application serving 600,000+ users, implementing secure authentication with Node.js, Express, and JWT — reducing login-related support tickets by 40%.",
+      "Gained hands-on experience with GCP (Cloud SQL, Firebase Auth, Google Maps APIs) and AWS (EC2, S3, DynamoDB) for backend integration and location-based features.",
+      "Led a team of 5 to build a VR-based Biology Lab for Oculus (Meta), delivering 50% ahead of schedule with full knowledge transfer on 3D model design and functionality.",
     ],
-  }
+  },
 ];
 
 const testimonials = [
@@ -216,7 +250,7 @@ const projects = [
     source_code_link: "https://github.com/uthamprabhu/netflix-clone-with-pure-HtmlCssJs",
   },
   {
-    name: "Olive Oil selling",
+    name: "Olive Oil Selling",
     description:
       "Explore high-quality olive oils on our secure full-stack website, complete with proper authentication for a safe shopping experience.",
     tags: [
@@ -272,7 +306,7 @@ const projects = [
   {
     name: "Buy and Sell App",
     description:
-      "An web application where you can list items and buy items from other people who have listed on the site, just like OLX.",
+      "A web application where you can list items and buy items from other people who have listed on the site, just like OLX.",
     tags: [
       {
         name: "angularjs",
@@ -297,7 +331,7 @@ const projects = [
   {
     name: "Blog Website",
     description:
-      "A full stack and fully autenticated blog site where you can read, upvote and comment just like any other blog site.",
+      "A full stack and fully authenticated blog site where you can read, upvote and comment just like any other blog site.",
     tags: [
       {
         name: "mongodb",

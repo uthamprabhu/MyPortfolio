@@ -15,14 +15,34 @@ const Contact = () => {
     message: ''
   })
   const [loading, setLoading] = useState(false)
+  const [errors, setErrors] = useState({})
 
   const handleChange = (e) => {
     const { name, value } = e.target
     setForm({ ...form, [name]: value })
+    // clear error on edit
+    if (errors[name]) setErrors({ ...errors, [name]: '' })
+  }
+
+  const validate = () => {
+    const newErrors = {}
+    if (!form.name.trim()) newErrors.name = 'Name is required.'
+    if (!form.email.trim()) {
+      newErrors.email = 'Email is required.'
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email.trim())) {
+      newErrors.email = 'Please enter a valid email address.'
+    }
+    if (!form.message.trim()) newErrors.message = 'Message is required.'
+    return newErrors
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
+    const validationErrors = validate()
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors)
+      return
+    }
     setLoading(true)
 
     emailjs.send(
@@ -42,11 +62,8 @@ const Contact = () => {
           setLoading(false);
           alert("Thank you. I will get back to you as soon as possible.");
 
-          setForm({
-            name: "",
-            email: "",
-            message: "",
-          });
+          setForm({ name: "", email: "", message: "" });
+          setErrors({});
         },
         (error) => {
           setLoading(false);
@@ -81,8 +98,9 @@ const Contact = () => {
               value={form.name}
               onChange={handleChange}
               placeholder="What's your good name?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={`bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium ${errors.name ? 'ring-2 ring-red-500' : ''}`}
             />
+            {errors.name && <span className='text-red-400 text-sm mt-1'>{errors.name}</span>}
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your email</span>
@@ -92,8 +110,9 @@ const Contact = () => {
               value={form.email}
               onChange={handleChange}
               placeholder="What's your email address?"
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={`bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium ${errors.email ? 'ring-2 ring-red-500' : ''}`}
             />
+            {errors.email && <span className='text-red-400 text-sm mt-1'>{errors.email}</span>}
           </label>
           <label className='flex flex-col'>
             <span className='text-white font-medium mb-4'>Your Message</span>
@@ -103,8 +122,9 @@ const Contact = () => {
               value={form.message}
               onChange={handleChange}
               placeholder='What you want to say?'
-              className='bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium'
+              className={`bg-tertiary py-4 px-6 placeholder:text-secondary text-white rounded-lg outline-none border-none font-medium ${errors.message ? 'ring-2 ring-red-500' : ''}`}
             />
+            {errors.message && <span className='text-red-400 text-sm mt-1'>{errors.message}</span>}
           </label>
 
           <button

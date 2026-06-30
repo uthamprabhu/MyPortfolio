@@ -19,7 +19,7 @@ import reactjs from "./tech/reactjs.png";
 import redux from "./tech/redux.png";
 import tailwind from "./tech/tailwind.png";
 import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.svg";
+import threejs from "./tech/threejs.png";
 
 import meta from "./company/meta.png";
 import shopify from "./company/shopify.png";
@@ -32,6 +32,8 @@ import tripguide from "./tripguide.png";
 
 import logo2 from './logo2.svg'
 import tcs from './company/tcsLogo.png'
+import warpdrive from './company/warpdrive.png'
+import freelance from './company/freelance.svg'
 import netflixClone from './projects/netflix.png'
 import vuejsOlive from './projects/vuejsOlive.png'
 import nodeMicro from './projects/nodejsMicroservices.png'
@@ -47,6 +49,8 @@ export {
   vuejsOlive,
   netflixClone,
   tcs,
+  warpdrive,
+  freelance,
   logo2,
   logo,
   backend,
