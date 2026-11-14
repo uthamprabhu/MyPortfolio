@@ -40,10 +40,27 @@ export const viewport = {
   colorScheme: 'dark',
 }
 
+const personJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: siteUrl,
+  jobTitle: 'Full Stack Developer',
+  description: site.description,
+  address: { '@type': 'PostalAddress', addressLocality: 'Kochi', addressCountry: 'IN' },
+  sameAs: [site.linkedin, site.github],
+  knowsAbout: ['React.js', 'Next.js', 'Node.js', 'JavaScript', 'TypeScript', 'MongoDB', 'Three.js', 'AWS', 'GCP'],
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
       <body>
+        <script
+          type="application/ld+json"
+          // Static object, no user input: safe to inline.
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
+        />
         {children}
         <SpeedInsights />
       </body>
