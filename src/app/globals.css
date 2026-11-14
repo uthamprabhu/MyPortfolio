@@ -222,25 +222,81 @@
       -2.6em 0em 0 0em rgba(255, 255, 255, 0.7), -1.8em -1.8em 0 0em #ffffff;
   }
 }
-/* Landing page (v2 placeholder) */
+
+/* ---------- Landing page (v2 placeholder) ---------- */
+.landing,
+.landing * {
+  color-scheme: light;
+}
+
+.landing ::selection {
+  background: #111110;
+  color: #f4f2ee;
+}
+
+.landing-rise {
+  opacity: 0;
+  transform: translateY(14px);
+  animation: landingRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
+/* Headline is the LCP element: slide only, never start invisible */
+.landing-rise-solid {
+  transform: translateY(14px);
+  animation: landingRise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
+}
+
 .landing-cursor {
   animation: landingBlink 1s steps(1) infinite;
 }
+
+.landing-dot {
+  animation: landingPulse 2s ease-in-out infinite;
+}
+
 .landing-bar {
   width: 99%;
   transform-origin: left;
-  animation: landingFill 2.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform: scaleX(0);
+  animation: landingFill 2.4s cubic-bezier(0.22, 1, 0.36, 1) 0.6s forwards;
+}
+
+.landing-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease, color 0.2s ease;
+}
+.landing-link:hover,
+.landing-link:focus-visible {
+  background-size: 100% 1px;
+}
+
+@keyframes landingRise {
+  to { opacity: 1; transform: none; }
 }
 @keyframes landingBlink {
   50% { opacity: 0; }
 }
+@keyframes landingPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
 @keyframes landingFill {
-  from { transform: scaleX(0); }
   to { transform: scaleX(1); }
 }
+
 @media (prefers-reduced-motion: reduce) {
+  .landing-rise,
+  .landing-rise-solid,
   .landing-cursor,
+  .landing-dot,
   .landing-bar {
     animation: none;
+    opacity: 1;
+    transform: none;
   }
 }
