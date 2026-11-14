@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Instrument_Serif } from 'next/font/google'
 
-import StackGame from '../components/landing/StackGame'
+import Arcade from '../components/landing/Arcade'
 import { site } from '../site'
 
 const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: 'italic', display: 'swap' })
@@ -87,7 +87,7 @@ export default function Home() {
                   text-[15px] font-medium px-7 py-4 rounded-full transition-colors duration-300
                   hover:bg-[#111110] hover:text-[#F4F2EE] ${focusRing}`}
               >
-                Or play a quick game <span aria-hidden="true">↓</span>
+                Or play a game <span aria-hidden="true">↓</span>
               </a>
             </div>
           </section>
@@ -108,19 +108,7 @@ export default function Home() {
             </div>
 
             <div id="game" className="landing-rise order-1 lg:order-2 scroll-mt-6" style={{ '--d': '400ms' }}>
-              <div className="flex items-center justify-between gap-4">
-                <Label n="03">Stack the release</Label>
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8A877F] whitespace-nowrap">
-                  <span className="hidden sm:inline">Click / Space</span>
-                  <span className="sm:hidden">Tap</span>
-                </span>
-              </div>
-              <div className="mt-4 h-[340px] sm:h-[300px] lg:h-[clamp(180px,30svh,280px)] rounded-[2px] border border-[#D9D5CC] bg-[#FAF9F6]">
-                <StackGame />
-              </div>
-              <p className="mt-3 text-[13px] text-[#8A877F] [@media(min-width:1024px)_and_(max-height:760px)]:hidden">
-                Perfect drops build a combo. Three in a row widens the block again.
-              </p>
+              <Arcade labelClassName="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8A877F]" />
             </div>
           </aside>
         </div>
