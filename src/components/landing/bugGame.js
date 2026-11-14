@@ -12,37 +12,38 @@ const SLOW_SECONDS = 5 // how long a `debugger;` slow-mo lasts
 const SLOW_SCALE = 0.45 // world speed while slowed
 const SLOW_LABEL = 'debugger;'
 
-const chipWidth = (label) => Math.round(label.length * 7.4 + 22)
+const chipWidth = (label, k) => Math.round((label.length * 7.4 + 22) * k)
 
 // Falling code tokens: swipe or hover through them to collect. Touch a bug and the run ends.
 export function createBugGame() {
   const g = {
-    items: [], spawnIn: 0, t: 0, score: 0, lives: 3, mult: 1, lastHit: -9, best: readBest(BEST_KEY),
+    items: [], spawnIn: 0, t: 0, score: 0, lives: 3, mult: 1, lastHit: -9, best: readBest(BEST_KEY), k: 1, density: 1,
     ptr: null, trail: [], pops: [], keys: { left: false, right: false }, catcher: null, over: false, slow: 0,
   }
 
   const fallSpeed = () => Math.min(150 + g.t * 7, 560)
 
-  const spawn = (w) => {
+  const spawn = (w, h) => {
     const bugChance = 0.2 + Math.min(g.t / 100, 0.14)
     const r = Math.random()
     let it
     if (r < bugChance) {
-      it = { type: 'bug', w: 28, h: 24 }
+      it = { type: 'bug', w: 28 * g.k, h: 24 * g.k }
     } else if (r > 0.975 && g.lives < MAX_LIVES) {
-      it = { type: 'coffee', label: 'coffee +1', w: chipWidth('coffee +1'), h: 26 }
+      it = { type: 'coffee', label: 'coffee +1', w: chipWidth('coffee +1', g.k), h: 26 * g.k }
     } else if (r > 0.94 && g.t > 8 && g.slow <= 0 && !g.items.some((i) => i.type === 'slow')) {
-      it = { type: 'slow', label: SLOW_LABEL, w: chipWidth(SLOW_LABEL), h: 26 }
+      it = { type: 'slow', label: SLOW_LABEL, w: chipWidth(SLOW_LABEL, g.k), h: 26 * g.k }
     } else {
       const label = TOKENS[Math.floor(Math.random() * TOKENS.length)]
-      it = { type: 'code', label, w: chipWidth(label), h: 26 }
+      it = { type: 'code', label, w: chipWidth(label, g.k), h: 26 * g.k }
     }
     it.x = Math.random() * Math.max(1, w - it.w)
     it.y = -it.h - 4
     it.prevY = it.y
-    it.vy = fallSpeed() * (0.8 + Math.random() * 0.5)
+    // Taller canvas = longer drop, so scale speed to keep the same feel
+    it.vy = fallSpeed() * Math.max(1, h / 340) * (0.8 + Math.random() * 0.5)
     g.items.push(it)
-    g.spawnIn = Math.max(0.2, 0.7 - g.t * 0.011) * (0.6 + Math.random() * 0.8)
+    g.spawnIn = Math.max(0.2, 0.7 - g.t * 0.011) * (0.6 + Math.random() * 0.8) * g.density
   }
 
   const endRun = (reason) => {
@@ -134,11 +135,14 @@ export function createBugGame() {
       ctx.strokeRect(it.x - 3, it.y - 3, it.w + 6, it.h + 6)
       ctx.globalAlpha = 1
     }
-    text(ctx, it.label, it.x + it.w / 2, it.y + it.h / 2 + 4, { size: 12, color: st.ink })
+    text(ctx, it.label, it.x + it.w / 2, it.y + it.h / 2 + 4 * g.k, { size: Math.round(12 * g.k), color: st.ink })
   }
 
   return {
-    reset() {
+    reset({ w, h }) {
+      // Bigger window: bigger chips and denser spawns, so it never feels empty
+      g.k = Math.max(1, Math.min(1.4, Math.min(w / 560, h / 400)))
+      g.density = Math.max(0.55, Math.min(1, 520 / w))
       Object.assign(g, {
         items: [], spawnIn: 0.35, t: 0, score: 0, lives: 3, mult: 1, lastHit: -9, slow: 0,
         ptr: null, trail: [], pops: [], keys: { left: false, right: false }, catcher: null, over: false,
@@ -151,7 +155,7 @@ export function createBugGame() {
       g.slow = Math.max(0, g.slow - dt)
       g.t += wdt
       g.spawnIn -= wdt
-      if (g.spawnIn <= 0) spawn(w)
+      if (g.spawnIn <= 0) spawn(w, h)
 
       for (const it of g.items) { it.prevY = it.y; it.y += it.vy * wdt }
 

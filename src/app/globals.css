@@ -241,6 +241,14 @@
   animation-delay: var(--d, 0ms);
 }
 
+/* Opacity-only entrance for anything that contains a position:fixed modal.
+   A transform animation (even finished, via fill-mode) makes the ancestor the modal's containing block. */
+.landing-fade {
+  opacity: 0;
+  animation: landingFade 0.8s ease-out forwards;
+  animation-delay: var(--d, 0ms);
+}
+
 /* Headline is the LCP element: slide only, never start invisible */
 .landing-rise-solid {
   transform: translateY(14px);
@@ -278,6 +286,9 @@
 @keyframes landingRise {
   to { opacity: 1; transform: none; }
 }
+@keyframes landingFade {
+  to { opacity: 1; }
+}
 @keyframes landingBlink {
   50% { opacity: 0; }
 }
@@ -292,6 +303,7 @@
 @media (prefers-reduced-motion: reduce) {
   .landing-rise,
   .landing-rise-solid,
+  .landing-fade,
   .landing-cursor,
   .landing-dot,
   .landing-bar {

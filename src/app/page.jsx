@@ -64,8 +64,9 @@ export default function Home() {
               className="landing-rise mt-8 max-w-[34rem] text-[16px] sm:text-[17px] leading-[1.65] text-[#4A4843]"
               style={{ '--d': '160ms' }}
             >
-              I&apos;m rebuilding this from scratch. Meanwhile, the current version still works
-              perfectly well. It has a 3D computer, and it&apos;s very proud of it.
+              I&apos;m rebuilding my site from scratch. Until it&apos;s ready, my older site still
+              works perfectly well. Drag the 3D computer to spin it, swipe the Earth at the very
+              bottom, and poke around for a few more surprises.
             </p>
 
             <div className="landing-rise mt-10 flex flex-col sm:flex-row gap-4 sm:gap-7 sm:items-center" style={{ '--d': '240ms' }}>
@@ -75,7 +76,7 @@ export default function Home() {
                   text-[15px] font-medium pl-7 pr-6 py-4 rounded-full transition-colors duration-300
                   hover:bg-[#FF4F00] ${focusRing}`}
               >
-                Visit the current site
+                Visit my older site
                 <span aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </Link>
               <span className="hidden lg:inline text-[14px] text-[#8A877F]">
@@ -107,7 +108,7 @@ export default function Home() {
               <p className="mt-3 text-[13px] text-[#8A877F] [@media(min-width:1024px)_and_(max-height:760px)]:hidden">The last 1% takes the other 90% of the time.</p>
             </div>
 
-            <div id="game" className="landing-rise order-1 lg:order-2 scroll-mt-6" style={{ '--d': '400ms' }}>
+            <div id="game" className="landing-fade order-1 lg:order-2 scroll-mt-6" style={{ '--d': '400ms' }}>
               <Arcade labelClassName="font-mono text-[11px] uppercase tracking-[0.14em] text-[#8A877F]" />
             </div>
           </aside>

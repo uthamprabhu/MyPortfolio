@@ -4,7 +4,7 @@ import {
 } from '../../components'
 
 export const metadata = {
-  title: 'Portfolio v1',
+  title: 'Older portfolio',
   alternates: { canonical: '/v1' },
 }
 

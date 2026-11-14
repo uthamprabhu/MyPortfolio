@@ -64,7 +64,7 @@ export default function Arcade({ labelClassName = '' }) {
         </div>
       </div>
 
-      <div className="mt-4 h-[340px] sm:h-[300px] lg:h-[clamp(180px,30svh,280px)] rounded-[2px] border border-[#D9D5CC] bg-[#FAF9F6] overflow-hidden">
+      <div className="mt-4 h-[340px] sm:h-[300px] md:h-[380px] lg:h-[clamp(180px,30svh,280px)] rounded-[2px] border border-[#D9D5CC] bg-[#FAF9F6] overflow-hidden">
         {GAMES.map((g) => (
           <div
             key={g.id}

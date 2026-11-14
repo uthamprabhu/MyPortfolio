@@ -1,23 +1,23 @@
 import { COLORS, readBest, saveBest, text } from './engineKit'
 import { placeBlock } from './stackRules'
 
-const BLOCK_H = 18
 const BEST_KEY = 'stack-release-best'
 
 // One-tap stacking: drop each release onto the last one.
 export function createStackGame() {
   const g = {
     stack: [], cur: null, baseW: 0, speed: 0, combo: 0, score: 0,
-    best: readBest(BEST_KEY), cam: 0, slices: [], flash: 0, shake: 0, over: false,
+    best: readBest(BEST_KEY), bh: 18, cam: 0, slices: [], flash: 0, shake: 0, over: false,
   }
 
-  const blockTop = (i, h) => h - 22 - (i + 1) * BLOCK_H + g.cam
+  const blockTop = (i, h) => h - 22 - (i + 1) * g.bh + g.cam
 
   const spawn = (w) => {
     const top = g.stack[g.stack.length - 1]
     const dir = g.stack.length % 2 ? 1 : -1
     g.cur = { x: dir > 0 ? -top.w : w, w: top.w, dir }
-    g.speed = Math.min(150 + g.score * 9, 520)
+    // Wider canvas = longer pass, so scale speed to keep the same rhythm
+    g.speed = Math.min(150 + g.score * 9, 520) * Math.max(1, w / 480)
   }
 
   const drop = ({ w, h }) => {
@@ -49,8 +49,10 @@ export function createStackGame() {
   }
 
   return {
-    reset({ w }) {
-      g.baseW = Math.round(Math.min(w * 0.46, 190))
+    reset({ w, h }) {
+      // Scale with the canvas so the modal version isn't tiny
+      g.bh = Math.round(Math.max(18, Math.min(30, h / 18)))
+      g.baseW = Math.round(Math.min(w * 0.42, 320))
       g.stack = [{ x: (w - g.baseW) / 2, w: g.baseW }]
       Object.assign(g, { combo: 0, score: 0, cam: 0, slices: [], flash: 0, shake: 0, over: false })
       spawn(w)
@@ -66,7 +68,7 @@ export function createStackGame() {
       }
       for (const s of g.slices) { s.vy += 1600 * dt; s.y += s.vy * dt; s.a -= dt * 1.4 }
       g.slices = g.slices.filter((s) => s.a > 0)
-      const camTarget = Math.max(0, (g.stack.length + 1) * BLOCK_H - h * 0.5)
+      const camTarget = Math.max(0, (g.stack.length + 1) * g.bh - h * 0.5)
       g.cam += (camTarget - g.cam) * Math.min(1, dt * 8)
       g.flash = Math.max(0, g.flash - dt * 2.2)
       g.shake = Math.max(0, g.shake - dt * 3)
@@ -84,11 +86,11 @@ export function createStackGame() {
         ctx.fillRect(0, groundY, w, 1)
       }
 
-      const from = Math.max(0, g.stack.length - Math.ceil(h / BLOCK_H) - 2)
+      const from = Math.max(0, g.stack.length - Math.ceil(h / g.bh) - 2)
       for (let i = from; i < g.stack.length; i++) {
         const b = g.stack[i]
         ctx.fillStyle = i % 2 ? COLORS.ink : COLORS.ink2
-        ctx.fillRect(b.x, blockTop(i, h), b.w, BLOCK_H - 2)
+        ctx.fillRect(b.x, blockTop(i, h), b.w, g.bh - 2)
       }
 
       if (g.flash > 0 && g.stack.length > 1) {
@@ -98,20 +100,20 @@ export function createStackGame() {
         ctx.strokeStyle = COLORS.accent
         ctx.globalAlpha = g.flash
         ctx.lineWidth = 2
-        ctx.strokeRect(b.x - pad, blockTop(i, h) - pad, b.w + pad * 2, BLOCK_H - 2 + pad * 2)
+        ctx.strokeRect(b.x - pad, blockTop(i, h) - pad, b.w + pad * 2, g.bh - 2 + pad * 2)
         ctx.globalAlpha = 1
       }
 
       for (const s of g.slices) {
         ctx.globalAlpha = Math.max(0, s.a)
         ctx.fillStyle = COLORS.ink2
-        ctx.fillRect(s.x, s.y, s.w, BLOCK_H - 2)
+        ctx.fillRect(s.x, s.y, s.w, g.bh - 2)
       }
       ctx.globalAlpha = 1
 
       if (!g.over && g.cur) {
         ctx.fillStyle = COLORS.accent
-        ctx.fillRect(g.cur.x, blockTop(g.stack.length, h), g.cur.w, BLOCK_H - 2)
+        ctx.fillRect(g.cur.x, blockTop(g.stack.length, h), g.cur.w, g.bh - 2)
       }
       ctx.restore()
 

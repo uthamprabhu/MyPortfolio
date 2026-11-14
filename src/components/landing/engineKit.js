@@ -68,11 +68,13 @@ export function runEngine(canvas, game, { onOver, onAutoPause }) {
   const api = {
     playing: () => playing,
     start() {
+      resize() // the canvas may have just grown into the modal
       game.reset(size)
       playing = false
       api.resume()
     },
     resume() {
+      resize()
       if (playing || !size.w) return
       playing = true
       last = performance.now()
