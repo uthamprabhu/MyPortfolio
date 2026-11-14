@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 
 import { styles } from '../styles'
@@ -15,7 +17,7 @@ const Hero = () => {
         </div>
 
         <div>
-          <h1 className={`${styles.heroHeadText}`}>Hi, I'm&nbsp;
+          <h1 className={`${styles.heroHeadText}`}>Hi, I&apos;m&nbsp;
             <span className='text-[#915eff]'>Utham</span></h1>
           <p className={`${styles.heroSubText} mt-2 text-white-100`}>
             I develop Full stack <br className='sm:block hidden' />end-to-end applications.

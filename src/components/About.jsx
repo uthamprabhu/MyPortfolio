@@ -1,5 +1,7 @@
+'use client'
+
 import React from 'react'
-import { Tilt } from 'react-tilt'
+import Tilt from './Tilt'
 import { motion } from 'framer-motion'
 
 import { styles } from '../styles'

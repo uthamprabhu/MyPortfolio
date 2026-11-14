@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+'use client'
+
+import { useState } from 'react'
+import Link from 'next/link'
 
 import { styles } from '../styles'
 import { navLinks } from '../constants'
@@ -18,7 +20,7 @@ const Navbar = () => {
     >
       <div className='w-full flex justify-between
       items-center max-w-7xl mx-auto'>
-        <Link to="/"
+        <Link href="/"
           className='flex items-center gap-2'
           onClick={() => {
             setActive("")

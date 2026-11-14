@@ -1,6 +1,11 @@
-import EarthCanvas from "./Earth";
-import BallCanvas from "./Ball";
-import ComputersCanvas from "./Computers";
-import StarsCanvas from "./Stars";
+'use client'
 
-export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas };
+import dynamic from 'next/dynamic'
+
+// WebGL needs the browser; skip SSR so the server HTML stays light.
+const EarthCanvas = dynamic(() => import('./Earth'), { ssr: false })
+const BallCanvas = dynamic(() => import('./Ball'), { ssr: false })
+const ComputersCanvas = dynamic(() => import('./Computers'), { ssr: false })
+const StarsCanvas = dynamic(() => import('./Stars'), { ssr: false })
+
+export { EarthCanvas, BallCanvas, ComputersCanvas, StarsCanvas }

@@ -1,4 +1,6 @@
-import { Suspense, useEffect, useState } from "react";
+'use client'
+
+import { Suspense } from "react";
 import { Canvas } from "@react-three/fiber";
 import {
   Decal,
@@ -9,6 +11,7 @@ import {
 } from "@react-three/drei";
 
 import CanvasLoader from "../Loader";
+import useMediaQuery from "../../hooks/useMediaQuery";
 
 const Ball = (props) => {
   const [decal] = useTexture([props.imgUrl]);
@@ -57,15 +60,7 @@ const FlatBall = ({ icon, index = 0 }) => (
 );
 
 const BallCanvas = ({ icon, index }) => {
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
-
-  useEffect(() => {
-    const query = window.matchMedia("(max-width: 1024px)");
-    setIsSmallScreen(query.matches);
-    const handler = (e) => setIsSmallScreen(e.matches);
-    query.addEventListener("change", handler);
-    return () => query.removeEventListener("change", handler);
-  }, []);
+  const isSmallScreen = useMediaQuery("(max-width: 1024px)");
 
   // Mobile / tablet -> lightweight animated flat ball.
   if (isSmallScreen) {

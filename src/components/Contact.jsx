@@ -1,3 +1,5 @@
+'use client'
+
 import { useState, useRef } from "react"
 import { motion } from 'framer-motion'
 import emailjs from '@emailjs/browser'
@@ -46,8 +48,8 @@ const Contact = () => {
     setLoading(true)
 
     emailjs.send(
-      import.meta.env.VITE_SERVICE_KEY,
-      import.meta.env.VITE_TEMPLATE_KEY,
+      process.env.NEXT_PUBLIC_SERVICE_KEY,
+      process.env.NEXT_PUBLIC_TEMPLATE_KEY,
       {
         from_name: form.name,
         to_name: 'Utham N S Prabhu',
@@ -55,7 +57,7 @@ const Contact = () => {
         to_email: 'uthamprabhu1@gmail.com',
         message: form.message
       },
-      import.meta.env.VITE_PUBLIC_KEY
+      process.env.NEXT_PUBLIC_PUBLIC_KEY
     )
       .then(
         () => {

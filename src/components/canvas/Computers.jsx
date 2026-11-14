@@ -1,11 +1,14 @@
-import { Suspense, useEffect, useState } from 'react'
+'use client'
+
+import { Suspense } from 'react'
 import { Canvas } from '@react-three/fiber'
 import { OrbitControls, Preload, useGLTF } from '@react-three/drei'
 
 import CanvasLoader from '../Loader'
+import useMediaQuery from '../../hooks/useMediaQuery'
 
 const Computers = ({ isMobile }) => {
-  const computer = useGLTF('./desktop_pc/scene.gltf')
+  const computer = useGLTF('/desktop_pc/scene.gltf')
   return (
     <mesh>
       <hemisphereLight intensity={5} groundColor="black" />
@@ -46,28 +49,9 @@ const DesktopOnlyNotice = () => (
 )
 
 const ComputersCanvas = () => {
-  const [isMobile, setIsMobile] = useState(false)
+  const isMobile = useMediaQuery('(max-width: 500px)')
   // Screens up to 1024px (phones + most tablets) skip the 3D model.
-  const [isSmallScreen, setIsSmallScreen] = useState(false)
-
-  useEffect(() => {
-    const mobileQuery = window.matchMedia('(max-width: 500px)')
-    const smallQuery = window.matchMedia('(max-width: 1024px)')
-
-    setIsMobile(mobileQuery.matches)
-    setIsSmallScreen(smallQuery.matches)
-
-    const handleMobileChange = (event) => setIsMobile(event.matches)
-    const handleSmallChange = (event) => setIsSmallScreen(event.matches)
-
-    mobileQuery.addEventListener('change', handleMobileChange)
-    smallQuery.addEventListener('change', handleSmallChange)
-
-    return () => {
-      mobileQuery.removeEventListener('change', handleMobileChange)
-      smallQuery.removeEventListener('change', handleSmallChange)
-    }
-  }, [])
+  const isSmallScreen = useMediaQuery('(max-width: 1024px)')
 
   // Don't mount the WebGL canvas on small screens. This avoids the
   // heavy model crashing the context and leaving a white block.

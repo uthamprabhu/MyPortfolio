@@ -1,83 +1,36 @@
-import logo from "./logo.svg";
-import backend from "./backend.png";
-import creator from "./creator.png";
-import mobile from "./mobile.png";
-import web from "./web.png";
-import github from "./github.png";
-import menu from "./menu.svg";
-import close from "./close.svg";
+// Plain public URLs: works for <img>, CSS and three.js texture loaders alike.
+const a = (p) => `/assets/${p}`
 
-import css from "./tech/css.png";
-import docker from "./tech/docker.png";
-import figma from "./tech/figma.png";
-import git from "./tech/git.png";
-import html from "./tech/html.png";
-import javascript from "./tech/javascript.png";
-import mongodb from "./tech/mongodb.png";
-import nodejs from "./tech/nodejs.png";
-import reactjs from "./tech/reactjs.png";
-import redux from "./tech/redux.png";
-import tailwind from "./tech/tailwind.png";
-import typescript from "./tech/typescript.png";
-import threejs from "./tech/threejs.png";
+export const logo2 = a('logo2.svg')
+export const backend = a('backend.png')
+export const creator = a('creator.png')
+export const mobile = a('mobile.png')
+export const web = a('web.png')
+export const github = a('github.png')
+export const menu = a('menu.svg')
+export const close = a('close.svg')
 
-import meta from "./company/meta.png";
-import shopify from "./company/shopify.png";
-import starbucks from "./company/starbucks.png";
-import tesla from "./company/tesla.png";
+export const css = a('tech/css.png')
+export const docker = a('tech/docker.png')
+export const figma = a('tech/figma.png')
+export const git = a('tech/git.png')
+export const html = a('tech/html.png')
+export const javascript = a('tech/javascript.png')
+export const mongodb = a('tech/mongodb.png')
+export const nodejs = a('tech/nodejs.png')
+export const reactjs = a('tech/reactjs.png')
+export const redux = a('tech/redux.png')
+export const tailwind = a('tech/tailwind.png')
+export const typescript = a('tech/typescript.png')
+export const threejs = a('tech/threejs.png')
 
-import carrent from "./carrent.png";
-import jobit from "./jobit.png";
-import tripguide from "./tripguide.png";
+export const tcs = a('company/tcsLogo.png')
+export const warpdrive = a('company/warpdrive.png')
+export const freelance = a('company/freelance.svg')
 
-import logo2 from './logo2.svg'
-import tcs from './company/tcsLogo.png'
-import warpdrive from './company/warpdrive.png'
-import freelance from './company/freelance.svg'
-import netflixClone from './projects/netflix.png'
-import vuejsOlive from './projects/vuejsOlive.png'
-import nodeMicro from './projects/nodejsMicroservices.png'
-import zoomClone from './projects/zoomClone.png'
-import angularBuySell from './projects/angularBuySell.png'
-import reactBlog from './projects/reactBlog.png'
-
-export {
-  reactBlog,
-  angularBuySell,
-  zoomClone,
-  nodeMicro,
-  vuejsOlive,
-  netflixClone,
-  tcs,
-  warpdrive,
-  freelance,
-  logo2,
-  logo,
-  backend,
-  creator,
-  mobile,
-  web,
-  github,
-  menu,
-  close,
-  css,
-  docker,
-  figma,
-  git,
-  html,
-  javascript,
-  mongodb,
-  nodejs,
-  reactjs,
-  redux,
-  tailwind,
-  typescript,
-  threejs,
-  meta,
-  shopify,
-  starbucks,
-  tesla,
-  carrent,
-  jobit,
-  tripguide,
-};
+export const netflixClone = a('projects/netflix.png')
+export const vuejsOlive = a('projects/vuejsOlive.png')
+export const nodeMicro = a('projects/nodejsMicroservices.png')
+export const zoomClone = a('projects/zoomClone.png')
+export const angularBuySell = a('projects/angularBuySell.png')
+export const reactBlog = a('projects/reactBlog.png')

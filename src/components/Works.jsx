@@ -1,12 +1,14 @@
-import { Tilt } from 'react-tilt'
+'use client'
+
+import Image from 'next/image'
+import Tilt from './Tilt'
 import { motion } from 'framer-motion'
 
 import { styles } from '../styles'
-import { git, github } from '../assets'
+import { github } from '../assets'
 import { SectionWrapper } from '../hoc'
 import { projects } from '../constants'
 import { fadeIn, textVariant } from '../utils/motion'
-import { MaxEquation } from 'three'
 
 const ProjectCard = ({ index, name, description,
   tags, image, source_code_link }) => {
@@ -23,8 +25,9 @@ const ProjectCard = ({ index, name, description,
         sm:w-[360px] w-full"
       >
         <div className='relative w-full h-[230px]'>
-          <img src={image} alt={name}
-            className='w-full h-full rounded-2xl'
+          <Image src={image} alt={name} fill
+            sizes='(min-width: 640px) 320px, 100vw'
+            className='rounded-2xl'
           />
 
           <div className='absolute inset-0 flex justify-end
