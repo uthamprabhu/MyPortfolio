@@ -19,8 +19,8 @@ export const metadata = {
   authors: [{ name: site.name, url: siteUrl }],
   creator: site.name,
   keywords: [
-    'Utham N S Prabhu', 'Utham Prabhu', 'Full Stack Developer', 'React Developer',
-    'Next.js Developer', 'Node.js Developer', 'Frontend Developer', 'Kochi', 'Bengaluru', 'Portfolio',
+    'Utham N S Prabhu', 'Utham Prabhu', 'Frontend Engineer', 'Frontend Developer', 'React Developer',
+    'Next.js Developer', 'TypeScript', 'Full Stack Developer', 'Bengaluru', 'Portfolio',
   ],
   alternates: { canonical: '/' },
   openGraph: {
@@ -45,11 +45,11 @@ const personJsonLd = {
   '@type': 'Person',
   name: site.name,
   url: siteUrl,
-  jobTitle: 'Full Stack Developer',
+  jobTitle: site.role,
   description: site.description,
-  address: { '@type': 'PostalAddress', addressLocality: 'Kochi', addressCountry: 'IN' },
+  address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: 'IN' },
   sameAs: [site.linkedin, site.github],
-  knowsAbout: ['React.js', 'Next.js', 'Node.js', 'JavaScript', 'TypeScript', 'MongoDB', 'Three.js', 'AWS', 'GCP'],
+  knowsAbout: ['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL', 'MongoDB', 'GraphQL', 'AWS'],
 }
 
 export default function RootLayout({ children }) {

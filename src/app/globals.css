@@ -234,6 +234,170 @@
   color: #f4f2ee;
 }
 
+/* The home page sets --font-landing; :where() keeps specificity at zero so this only
+   replaces the global `*` Poppins rule and utilities like font-mono still win. */
+:where(.landing) * {
+  font-family: var(--font-landing, var(--font-poppins)), "Poppins", sans-serif;
+}
+
+/* Portrait: the off-duty photo wipes in as a circle growing out of the corner badge */
+.portrait-top {
+  clip-path: circle(0% at 88% 90%);
+  transition: clip-path 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portrait-badge {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.portrait-b,
+.portrait-hover {
+  display: none;
+}
+.portrait[data-on="true"] .portrait-top {
+  clip-path: circle(150% at 88% 90%);
+}
+.portrait[data-on="true"] .portrait-badge {
+  transform: rotate(180deg);
+}
+.portrait[data-on="true"] .portrait-a {
+  display: none;
+}
+.portrait[data-on="true"] .portrait-b {
+  display: inline;
+}
+@media (hover: hover) and (pointer: fine) {
+  .portrait-touch {
+    display: none;
+  }
+  .portrait-hover {
+    display: inline;
+  }
+  .portrait-frame:hover .portrait-top {
+    clip-path: circle(150% at 88% 90%);
+  }
+  .portrait-frame:hover .portrait-badge {
+    transform: rotate(180deg);
+  }
+  .portrait:has(.portrait-frame:hover) .portrait-a {
+    display: none;
+  }
+  .portrait:has(.portrait-frame:hover) .portrait-b {
+    display: inline;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .portrait-top,
+  .portrait-badge {
+    transition: none;
+  }
+}
+
+/* Off-duty section: the active hobby tints the whole band, edge to edge.
+   The huge box-shadow paints the tint past the centred column; clip-path trims it top and bottom. */
+.offduty {
+  --tint: #f4f2ee;
+  background-color: var(--tint);
+  box-shadow: 0 0 0 100vmax var(--tint);
+  clip-path: inset(0 -100vmax);
+  transition: background-color 0.6s ease, box-shadow 0.6s ease;
+}
+.offduty[data-active="cook"] { --tint: #f6ebd3; }
+.offduty[data-active="swim"] { --tint: #dcebf3; }
+.offduty[data-active="travel"] { --tint: #e3eddd; }
+
+.hobby {
+  transition: opacity 0.4s ease;
+}
+.offduty[data-active] .hobby:not([data-on="true"]) {
+  opacity: 0.35;
+}
+.hobby-dot {
+  color: #8a877f;
+  transition: color 0.4s ease;
+}
+.hobby[data-on="true"] .hobby-dot {
+  color: #3a6ea5;
+}
+.hobby-fx {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+.hobby[data-on="true"] .hobby-fx {
+  opacity: 1;
+}
+.hobby-wave {
+  animation: hobbyWave 6s linear infinite paused;
+}
+.hobby-steam {
+  animation: hobbySteam 1.8s ease-in-out infinite paused;
+}
+.hobby[data-on="true"] .hobby-wave,
+.hobby[data-on="true"] .hobby-steam {
+  animation-play-state: running;
+}
+.hobby[data-on="true"] .hobby-chip {
+  animation: hobbyPop 0.5s cubic-bezier(0.22, 1, 0.36, 1) backwards;
+}
+.hobby-route {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hobby[data-on="true"] .hobby-route {
+  clip-path: inset(0);
+}
+@keyframes hobbyWave {
+  to { transform: translateX(-50%); }
+}
+@keyframes hobbySteam {
+  0% { opacity: 0; transform: translateY(6px); }
+  40% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(-8px); }
+}
+@keyframes hobbyPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.92); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .offduty,
+  .hobby,
+  .hobby-fx,
+  .hobby-route {
+    transition: none;
+  }
+  .hobby-wave,
+  .hobby-steam,
+  .hobby[data-on="true"] .hobby-chip {
+    animation: none;
+  }
+}
+
+/* Scroll reveal: each block fades and rises as it enters the screen, driven by scroll position.
+   Pure CSS. Browsers without scroll-driven animations (Firefox today) simply show the content. */
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .landing-reveal {
+      animation: landingReveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0 entry 260px;
+    }
+  }
+}
+@keyframes landingReveal {
+  from { opacity: 0; transform: translateY(28px); }
+}
+
+/* Score rings draw themselves once; --o is the final stroke offset */
+.landing-ring {
+  stroke-dashoffset: var(--o);
+  animation: landingRing 1.4s cubic-bezier(0.22, 1, 0.36, 1) 0.3s backwards;
+}
+@keyframes landingRing {
+  from { stroke-dashoffset: 126; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .landing-ring {
+    animation: none;
+  }
+}
+
 .landing-rise {
   opacity: 0;
   transform: translateY(14px);
