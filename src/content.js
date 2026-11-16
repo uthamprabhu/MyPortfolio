@@ -108,12 +108,9 @@ export const experience = [
         details: [
           'Rebuilt from WordPress to Next.js, solo: design, build and SEO',
           'Flip cards, draggable industry tags, looping work reel',
+          'Small WooCommerce side task on an existing WordPress site: set up the payment gateway and payment settings',
+          "Added the store's existing products to WooCommerce with their images, and gave feedback on the store",
         ],
-      },
-      {
-        title: 'WooCommerce side task',
-        kind: 'Through Mantra Ads',
-        claim: 'Set up a payment gateway integration on a WooCommerce store, and gave product feedback on it.',
       },
     ],
   },
