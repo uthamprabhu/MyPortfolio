@@ -7,14 +7,14 @@ export const siteUrl =
 
 export const site = {
   name: 'Utham N S Prabhu',
-  title: 'Utham N S Prabhu | Frontend Engineer',
+  title: 'Utham N S Prabhu | Frontend Engineer, React & Next.js',
   role: 'Frontend Engineer',
   city: 'Bengaluru',
   email: 'uthamprabhu12@gmail.com',
   phone: '+91 9633693160',
   whatsapp: 'https://wa.me/919633693160',
   description:
-    'Frontend Engineer with 4+ years of experience in React.js, Next.js and TypeScript, comfortable across the stack with Node.js, PostgreSQL and AWS. Based in Bengaluru, open to remote, hybrid and on-site roles.',
+    'Frontend Engineer in Bengaluru with 4+ years in React, Next.js and TypeScript, plus Node.js, PostgreSQL and AWS. Open to remote, hybrid and on-site roles.',
   linkedin: 'https://www.linkedin.com/in/uthamprabhu',
   github: 'https://github.com/uthamprabhu',
 }

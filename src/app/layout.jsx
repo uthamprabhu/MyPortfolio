@@ -18,21 +18,15 @@ export const metadata = {
   applicationName: site.name,
   authors: [{ name: site.name, url: siteUrl }],
   creator: site.name,
-  keywords: [
-    'Utham N S Prabhu', 'Utham Prabhu', 'Frontend Engineer', 'Frontend Developer', 'React Developer',
-    'Next.js Developer', 'TypeScript', 'Full Stack Developer', 'Bengaluru', 'Portfolio',
-  ],
-  alternates: { canonical: '/' },
-  openGraph: {
-    type: 'profile',
-    url: '/',
-    siteName: site.name,
-    title: site.title,
-    description: site.description,
-    locale: 'en_IN',
+  publisher: site.name,
+  // Defaults for every route; the home page (app/page.jsx) sets its own full SEO.
+  openGraph: { type: 'website', siteName: site.name, locale: 'en_IN' },
+  twitter: { card: 'summary_large_image' },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, 'max-image-preview': 'large', 'max-snippet': -1, 'max-video-preview': -1 },
   },
-  twitter: { card: 'summary_large_image', title: site.title, description: site.description },
-  robots: { index: true, follow: true },
 }
 
 export const viewport = {
@@ -40,27 +34,10 @@ export const viewport = {
   colorScheme: 'dark',
 }
 
-const personJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: site.name,
-  url: siteUrl,
-  jobTitle: site.role,
-  description: site.description,
-  address: { '@type': 'PostalAddress', addressLocality: site.city, addressCountry: 'IN' },
-  sameAs: [site.linkedin, site.github],
-  knowsAbout: ['React.js', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL', 'MongoDB', 'GraphQL', 'AWS'],
-}
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={poppins.variable}>
       <body>
-        <script
-          type="application/ld+json"
-          // Static object, no user input: safe to inline.
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd).replace(/</g, '\\u003c') }}
-        />
         {children}
         <SpeedInsights />
       </body>

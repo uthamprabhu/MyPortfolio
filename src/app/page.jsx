@@ -7,14 +7,93 @@ import CacheDemo from '../components/proof/CacheDemo'
 import GuardDemo from '../components/proof/GuardDemo'
 import Scores from '../components/proof/Scores'
 import { experience, principles, stack } from '../content'
-import { site } from '../site'
+import { site, siteUrl } from '../site'
 
 const sans = Bricolage_Grotesque({ subsets: ['latin'], display: 'swap', variable: '--font-landing' })
 const serif = Instrument_Serif({ subsets: ['latin'], weight: '400', style: 'italic', display: 'swap' })
 
+// The share image comes from app/opengraph-image.jsx and is added to og:image / twitter:image automatically.
+export const metadata = {
+  title: { absolute: site.title },
+  description: site.description,
+  keywords: [
+    'Utham N S Prabhu', 'Utham Prabhu', 'Frontend Engineer', 'Frontend Developer', 'React Developer',
+    'Next.js Developer', 'TypeScript Developer', 'Full Stack Developer', 'Frontend Engineer Bengaluru',
+    'React Developer Bengaluru', 'Hire Frontend Developer India', 'Portfolio',
+  ],
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'profile',
+    url: '/',
+    siteName: site.name,
+    title: site.title,
+    description: site.description,
+    locale: 'en_IN',
+    firstName: 'Utham',
+    lastName: 'Prabhu',
+    username: 'uthamprabhu',
+  },
+  twitter: { card: 'summary_large_image', title: site.title, description: site.description },
+}
+
 export const viewport = {
   themeColor: '#F4F2EE',
   colorScheme: 'light',
+}
+
+const id = (frag) => `${siteUrl}/#${frag}`
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': id('website'),
+      url: siteUrl,
+      name: site.name,
+      inLanguage: 'en',
+      publisher: { '@id': id('person') },
+    },
+    {
+      '@type': 'ProfilePage',
+      '@id': id('profile'),
+      url: siteUrl,
+      name: site.title,
+      description: site.description,
+      inLanguage: 'en',
+      isPartOf: { '@id': id('website') },
+      mainEntity: { '@id': id('person') },
+      primaryImageOfPage: { '@id': id('photo') },
+    },
+    {
+      '@type': 'Person',
+      '@id': id('person'),
+      name: site.name,
+      alternateName: ['Utham Prabhu', 'Utham N S'],
+      givenName: 'Utham',
+      familyName: 'Prabhu',
+      url: siteUrl,
+      image: {
+        '@type': 'ImageObject',
+        '@id': id('photo'),
+        url: `${siteUrl}/assets/me/formal.jpg`,
+        width: 413,
+        height: 413,
+        caption: `${site.name}, ${site.role}`,
+      },
+      jobTitle: site.role,
+      description: site.description,
+      email: `mailto:${site.email}`,
+      address: { '@type': 'PostalAddress', addressLocality: site.city, addressRegion: 'Karnataka', addressCountry: 'IN' },
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: site.role,
+        occupationLocation: { '@type': 'City', name: site.city },
+        skills: stack.map(([, tools]) => tools).join(', '),
+      },
+      knowsAbout: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Node.js', 'PostgreSQL', 'MongoDB', 'GraphQL', 'AWS', 'Web performance', 'Core Web Vitals'],
+      sameAs: [site.linkedin, site.github],
+    },
+  ],
 }
 
 const links = [
@@ -67,6 +146,11 @@ const Details = ({ lines, label = 'What I did' }) => (
 export default function Home() {
   return (
     <div className={`landing ${sans.variable} min-h-[100svh] bg-[#F4F2EE] text-[#111110]`}>
+      <script
+        type="application/ld+json"
+        // Static object, no user input: safe to inline.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c') }}
+      />
       <header className="sticky top-0 z-10 border-b border-[#D9D5CC] bg-[#F4F2EE]/90 backdrop-blur-sm">
         <div className={`${shell} h-16 flex items-center justify-between gap-4`}>
           <span className="text-[13px] font-semibold tracking-[-0.01em] whitespace-nowrap">{site.name}</span>

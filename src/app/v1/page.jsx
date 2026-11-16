@@ -3,9 +3,10 @@ import {
   Hero, Navbar, Tech, Works, StarsCanvas, Resume
 } from '../../components'
 
+// Deprecated, kept only to view: hidden from search so it never competes with the home page.
 export const metadata = {
   title: 'Older portfolio',
-  alternates: { canonical: '/v1' },
+  robots: { index: false, follow: true },
 }
 
 export default function V1() {

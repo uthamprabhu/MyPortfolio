@@ -20,7 +20,7 @@ export default function Portrait() {
       >
         <Image
           src="/assets/me/formal.jpg"
-          alt="Utham in a blue checked shirt, formal portrait"
+          alt="Utham N S Prabhu, Frontend Engineer in Bengaluru, formal portrait in a blue checked shirt"
           fill
           priority
           sizes="(min-width: 768px) 352px, 90px"
@@ -28,7 +28,7 @@ export default function Portrait() {
         />
         <Image
           src="/assets/me/offduty.webp"
-          alt="Utham laughing, arms crossed, in a black shirt"
+          alt="Utham N S Prabhu off duty, laughing with arms crossed in a black shirt"
           fill
           loading="eager" // hidden by clip-path, so lazy loading would only start it on first hover
           sizes="(min-width: 768px) 352px, 90px"
