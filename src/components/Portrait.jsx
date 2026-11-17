@@ -9,13 +9,14 @@ export default function Portrait() {
   const [on, setOn] = useState(false)
 
   return (
-    <div className="portrait flex md:flex-col items-end md:items-start gap-4 md:w-[min(100%,352px,43svh)] md:ml-auto" data-on={on}>
+    // Phones: fills the hero's leftover height (absolute so the parent's flex-grow sets it); md+: normal flow.
+    <div className="portrait absolute inset-0 md:static flex md:flex-col items-end md:items-start gap-4 md:w-[min(100%,352px,43svh)] md:ml-auto" data-on={on}>
       <button
         type="button"
         aria-pressed={on}
         aria-label="Switch between my formal and off-duty photo"
         onClick={() => setOn(!on)}
-        className="portrait-frame relative shrink-0 h-28 md:h-auto md:w-full aspect-[4/5] overflow-hidden rounded-[3px] bg-[#D9D5CC] cursor-pointer
+        className="portrait-frame relative shrink-0 h-full md:h-auto md:w-full aspect-[4/5] overflow-hidden rounded-[3px] bg-[#D9D5CC] cursor-pointer
           focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#111110]"
       >
         <Image
@@ -23,7 +24,7 @@ export default function Portrait() {
           alt="Utham N S Prabhu, Frontend Engineer in Bengaluru, formal portrait in a blue checked shirt"
           fill
           priority
-          sizes="(min-width: 768px) 352px, 90px"
+          sizes="(min-width: 768px) 352px, 240px"
           className="object-cover"
         />
         <Image
@@ -31,7 +32,7 @@ export default function Portrait() {
           alt="Utham N S Prabhu off duty, laughing with arms crossed in a black shirt"
           fill
           loading="eager" // hidden by clip-path, so lazy loading would only start it on first hover
-          sizes="(min-width: 768px) 352px, 90px"
+          sizes="(min-width: 768px) 352px, 240px"
           className="portrait-top object-cover object-[62%_40%]"
         />
         <span

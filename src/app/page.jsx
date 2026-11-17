@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Bricolage_Grotesque, Instrument_Serif } from 'next/font/google'
 
+import Logo from '../components/Logo'
 import OffDuty from '../components/OffDuty'
 import Portrait from '../components/Portrait'
 import CacheDemo from '../components/proof/CacheDemo'
@@ -153,7 +154,10 @@ export default function Home() {
       />
       <header className="sticky top-0 z-10 border-b border-[#D9D5CC] bg-[#F4F2EE]/90 backdrop-blur-sm">
         <div className={`${shell} h-16 flex items-center justify-between gap-4`}>
-          <span className="text-[13px] font-semibold tracking-[-0.01em] whitespace-nowrap">{site.name}</span>
+          <span className="flex items-center gap-2.5 text-[13px] font-semibold tracking-[-0.01em] whitespace-nowrap">
+            <Logo className="h-[26px] w-auto shrink-0" />
+            {site.name}
+          </span>
           <span className={`${mono} flex items-center gap-2 text-[#5E5B55] whitespace-nowrap`}>
             <span className="landing-dot w-1.5 h-1.5 rounded-full bg-[#3A6EA5]" aria-hidden="true" />
             Open to work
@@ -163,8 +167,9 @@ export default function Home() {
 
       <main className={shell}>
         {/* Hero fits one screen: 4rem is the sticky header, type and gaps scale with the viewport height */}
-        <section className="min-h-[calc(100svh-4rem)] py-6 md:py-8 grid grid-cols-1 md:grid-cols-12 content-center md:items-center gap-y-5 md:gap-x-10">
-          <div className="landing-fade md:col-span-5 md:order-last" style={{ '--d': '200ms' }}>
+        {/* Phones: a column where the photo grows into the space the text leaves (capped), so the CTA stays above the fold */}
+        <section className="min-h-[calc(100svh-4rem)] py-6 md:py-8 flex flex-col justify-center md:grid md:grid-cols-12 md:content-center md:items-center gap-y-5 md:gap-x-10">
+          <div className="landing-fade relative flex-1 min-h-28 max-h-[18rem] md:max-h-none md:col-span-5 md:order-last" style={{ '--d': '200ms' }}>
             <Portrait />
           </div>
           <div className="md:col-span-7">
@@ -189,7 +194,7 @@ export default function Home() {
             >
               I&apos;m Utham, a frontend engineer in {site.city}. I take features from a Figma file to
               production in React, Next.js and TypeScript, and I&apos;m at home when the work
-              crosses into Node.js, PostgreSQL and AWS.
+              crosses into Node.js, PostgreSQL, MongoDB and AWS.
             </p>
             <p
               className={`landing-rise mt-[clamp(0.9rem,3svh,2rem)] ${mono} text-[#8A877F] hidden sm:block [@media(max-height:700px)]:hidden`}
